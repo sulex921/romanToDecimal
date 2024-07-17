@@ -1,0 +1,54 @@
+
+<div class="container">
+  <!-- <app-main></app-main> -->
+  <div class="row justify-content-center mt-5 mb-5">
+    <div class="col-6">
+      <div class="p-5 border shadow-lg p-3 bg-body rounded">
+        <div class="row mb-1">
+          <div class="col text-black-50">
+            Ingresa un número Romano
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8">
+            <input [ngModel]="roman | toLowerCase"
+              type="text"
+              (keyup.enter)="getDecimal()"
+              (ngModelChange)="roman=$event"
+              class="form-control"
+              name="roman"
+              />
+          </div>
+          <div class="col-auto">
+            <button type="button" class="btn btn-primary" (click)="getDecimal()">Enviar</button>
+          </div>
+        </div>
+
+        <div class="row justify-content-center mt-3">
+          <div class="col-12">
+            <div class="alert alert-danger" role="alert" *ngFor="let error of errors">
+              <i class="fa fa-exclamation-triangle text-danger me-1 fs-4"></i> {{error}}
+             </div>
+            </div>
+        </div>
+    </div>
+    </div>
+  </div>
+  <!-- <div class="row mb-5"> -->
+    <div class="btn-group mb-5" role="group" aria-label="Basic radio toggle button group">
+      <ng-container *ngIf="localStorage.length > 0">
+        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+        <label class="btn btn-outline-danger" for="btnradio1" (click)="deleteAll()"> <i class="fa fa-trash-o me-1"></i> Eliminar historial</label>
+      </ng-container>
+      <ng-container *ngIf="roman != ''">
+        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+        <label class="btn btn-outline-primary" for="btnradio3" (click)="clearInput()"><i class="fa fa-refresh me-1"></i> Limpiar input</label>
+      </ng-container>
+    </div>
+  <!-- </div> -->
+
+  <app-local-storage
+  [localStorage]="localStorage"
+  (delete)="deleteItem($event)"></app-local-storage>
+</div>
+

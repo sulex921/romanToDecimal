@@ -1,0 +1,10 @@
+<div class="row gy-5">
+  <div class="col-4 text-center" *ngFor="let item of localStorage; index as i">
+    <div class="p-3 border bg-light">
+      <i class="fa fa-times float-end text-danger cursor" (click)="deleteItem(i)"></i>
+      <p>Input: {{item.input}}</p>
+      <p>Output: {{item.output}}</p>
+    </div>
+  </div>
+</div>
+
